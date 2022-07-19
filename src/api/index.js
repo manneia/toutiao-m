@@ -6,7 +6,7 @@ import {} from '@/api/Article'
 import {} from '@/api/Channel'
 import {} from '@/api/comment'
 import {} from '@/api/Search'
-import {} from '@/api/User'
+import { getUserInfo } from '@/api/User'
 /**
  * 登录接口
  */
@@ -14,3 +14,8 @@ import {} from '@/api/User'
 export const getSmsCodeAPI = getSmsCode
 // 登录---- 登录
 export const LoginAPI = Login
+/**
+ * 用户接口
+ */
+// 获取用户个人信息
+export const getUserInfoAPI = getUserInfo

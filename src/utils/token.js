@@ -15,4 +15,4 @@ export const getItem = key => {
   }
 }
 // 清除本地存储
-export const removeItem = key => localStorage.removeItem(key)
+export const removeItem = () => localStorage.clear()

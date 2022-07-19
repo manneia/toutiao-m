@@ -5,7 +5,7 @@
  * @return SmsCode/(refresh_token,token)
  */
 import request from '@/utils/request.js'
-// 登录 ---- 获取验证码
+// 登录 ---- 获取验证码  注意:每分钟发送一次
 export const getSmsCode = (mobile) => request({
   url: `/v1_0/sms/codes/${mobile}`
 })

@@ -5,18 +5,18 @@
     <!-- 底部导航 -->
     <div>
       <van-tabbar v-model="active" class="layout-tabbar" route>
-        <van-tabbar-item icon="home-o" to="/layout/home">首页</van-tabbar-item>
-        <van-tabbar-item to="/layout/wenda">
+        <van-tabbar-item icon="home-o" replace to="/layout/home">首页</van-tabbar-item>
+        <van-tabbar-item to="/layout/wenda" replace>
           <i slot="icon" class="toutiao toutiao-wenda"></i>
           <span class="text">问答</span>
         </van-tabbar-item>
-        <van-tabbar-item to="/layout/video">
+        <van-tabbar-item to="/layout/video" replace>
           <i slot="icon" class="toutiao toutiao-shipin"></i>
           <span class="text">视频</span>
         </van-tabbar-item>
-        <van-tabbar-item icon="setting-o" to="/layout/user"
-          >我的</van-tabbar-item
-        >
+        <van-tabbar-item icon="setting-o" to="/layout/user" replace>
+          {{ $store.state.LoginOptions.token ? '我的' : '未登录' }}
+        </van-tabbar-item>
       </van-tabbar>
     </div>
   </div>

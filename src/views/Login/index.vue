@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <!-- 导航栏 -->
-    <van-nav-bar title="黑马头条 - 登录" />
+    <van-nav-bar title="黑马头条 - 登录" left-arrow @click-left="$router.back()" />
     <van-form ref="LoginForm" @submit="onSubmit">
       <van-field
         v-model.number="user.MobilePhone"
@@ -11,8 +11,7 @@
         type="number"
         placeholder="请输入手机号"
         maxlength="11"
-        :rules="UserFormRules.mobile"
-      >
+        :rules="UserFormRules.mobile">
         <i slot="left-icon" class="toutiao toutiao-shouji"></i>
       </van-field>
       <van-field
@@ -25,16 +24,10 @@
         label="短信验证码"
         placeholder="请输入短信验证码"
         :rules="UserFormRules.code"
-        maxlength="6"
-      >
+        maxlength="6">
         <i slot="left-icon" class="toutiao toutiao-yanzhengma"></i>
         <template #button>
-          <van-count-down
-            v-if="isCountDownShow"
-            :time="1000 * 60"
-            format="ss s"
-            @finish="isCountDownShow = false"
-          />
+          <van-count-down v-if="isCountDownShow" :time="1000 * 60" format="ss s" @finish="isCountDownShow = false" />
           <van-button
             v-else
             class="send-sms-btn"
@@ -48,14 +41,7 @@
         </template>
       </van-field>
       <div style="margin: 16px" class="login-btn-wrap">
-        <van-button
-          square
-          block
-          type="info"
-          native-type="submit"
-          class="login-btn"
-          >登录</van-button
-        >
+        <van-button square block type="info" native-type="submit" class="login-btn">登录</van-button>
       </div>
     </van-form>
   </div>
@@ -99,16 +85,14 @@ export default {
       })
       try {
         const res = await LoginAPI(values.MobilePhone, values.sms)
+        // console.log(res)
         this.SET_TOKEN(res.data.data.token)
         this.SET_REFRESH_TOKEN(res.data.data.refresh_token)
         this.$toast.success('登录成功')
         // 跳转一定要写在最后-->尽量延迟跳转
-        setTimeout(() => {
-          this.$router.replace({
-            path: this.$route.query.path || '/layout/home'
-          })
-        }, 0)
+        this.$router.push('layout/home')
       } catch (error) {
+        console.dir(error)
         if (error.response.status === 400) {
           this.$toast.fail('手机号或验证码错误')
         } else {
