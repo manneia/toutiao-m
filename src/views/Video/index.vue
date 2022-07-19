@@ -1,0 +1,15 @@
+<template>
+  <div>
+    <h1>视频</h1>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'VideoPage'
+}
+</script>
+
+<style scoped lang="less">
+
+</style>
