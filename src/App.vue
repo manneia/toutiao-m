@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    <!-- 路由出口 -->
-    <router-view></router-view>
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {}
+  },
+  created () {},
+  mounted () {},
+  methods: {}
 }
 </script>
 
-<style></style>
+<style scoped></style>

@@ -1,48 +1,47 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
-// 路由表
+import Vue from "vue";
+import VueRouter from "vue-router";
+
+Vue.use(VueRouter);
+
 const routes = [
   {
-    path: '/',
-    redirect: '/layout' // 默认打开首页
-  },
-  {
-    path: '/login',
-    // 命名路由
-    name: 'login',
-    // 当页面进行加载的时候会一次性加载所有的组件,造成首页留白时间较长
-    // 访问那个路径就加载对应的组件,提升页面加载速度
-    component: () => import('@/views/Login')
-  },
-  {
-    path: '/layout',
-    name: 'Layout',
-    redirect: '/layout/home',
-    component: () => import('@/views/Layout'),
+    path: "/",
+    name: "layout",
+    redirect: "/home",
+    component: () => import("@/views/layout"),
     children: [
+      //二级路由加/会覆盖一级路由,不加/将一级路由和二级路由进行拼接
       {
-        path: 'home',
-        component: () => import('@/views/Home')
+        path: "/home",
+        name: "home",
+        component: () => import("@/views/home"),
       },
       {
-        path: 'user',
-        component: () => import('@/views/User')
+        path: "/Q&A",
+        name: "Q&A",
+        component: () => import("@/views/Q&A"),
       },
       {
-        path: 'video',
-        component: () => import('@/views/Video')
+        path: "/video",
+        name: "video",
+        component: () => import("@/views/video"),
       },
       {
-        path: 'wenda',
-        component: () => import('@/views/Wenda')
-      }
-    ]
-  }
-]
+        path: "/my",
+        name: "my",
+        component: () => import("@/views/my"),
+      },
+    ],
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/login"),
+  },
+];
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

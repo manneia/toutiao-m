@@ -1,21 +1,19 @@
-/**
- * 相关接口的出口
- */
-import { getSmsCode, Login } from '@/api/Login'
-import {} from '@/api/Article'
-import {} from '@/api/Channel'
-import {} from '@/api/comment'
-import {} from '@/api/Search'
-import { getUserInfo } from '@/api/User'
-/**
- * 登录接口
- */
-// 登录---- 获取验证码
-export const getSmsCodeAPI = getSmsCode
-// 登录---- 登录
-export const LoginAPI = Login
-/**
- * 用户接口
- */
-// 获取用户个人信息
+import { login, verifictonCode, getUserInfo } from '@/api/user'
+
+import { getNewsInfo } from '@/api/article'
+
+import {
+  getChannelList,
+  getUserChannels,
+  addUserChannel,
+  deleteUserChannel
+} from '@/api/channel'
+
+export const loginAPI = login
+export const verifictonCodeAPI = verifictonCode
 export const getUserInfoAPI = getUserInfo
+export const getUserChannelsAPI = getUserChannels
+export const getNewsInfoAPI = getNewsInfo
+export const getChannelListAPI = getChannelList
+export const addUserChannelAPI = addUserChannel
+export const deleteUserChannelAPI = deleteUserChannel
