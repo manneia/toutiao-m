@@ -2,7 +2,7 @@
   <div class="home-container">
     <van-nav-bar class="page-nav-bar" title="登录" fixed>
       <template #title>
-        <van-button type="info" size="small" round icon="search" class="search-btn"> 搜索 </van-button>
+        <van-button type="info" size="small" round icon="search" class="search-btn" to="/search"> 搜索 </van-button>
       </template>
     </van-nav-bar>
 
@@ -25,7 +25,7 @@
       closeable
       close-icon-position="top-left"
       position="bottom"
-			:close-on-click-overlay="false"
+      :close-on-click-overlay="false"
       :style="{ height: '100%' }"
       @closed="close">
       <channel-edit
@@ -43,7 +43,7 @@ import { getUserChannelsAPI, getChannelListAPI } from '@/api'
 import articleList from '@/views/home/component/article_list'
 import channelEdit from '@/views/home/component/channel_edit'
 import { mapState } from 'vuex'
-import {getItem} from '@/utils/storage.js'
+import { getItem } from '@/utils/storage.js'
 export default {
   name: 'HomeIndex',
   data() {
@@ -75,16 +75,16 @@ export default {
         if (this.token) {
           const { data } = await getUserChannelsAPI()
           channels = data.data.channels
-        }else{
-					const localChannels = getItem('TOUTIAO_CHANNELS')
-					if(localChannels){
-						channels = localChannels
-					}else{
-						const {data} = await getUserChannelsAPI()
-						channels = data.data.channels
-					}
-				}
-				this.channels = channels
+        } else {
+          const localChannels = getItem('TOUTIAO_CHANNELS')
+          if (localChannels) {
+            channels = localChannels
+          } else {
+            const { data } = await getUserChannelsAPI()
+            channels = data.data.channels
+          }
+        }
+        this.channels = channels
       } catch (error) {
         this.$toast('获取数据失败')
       }
@@ -117,7 +117,7 @@ export default {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
   .search-btn {
-    width: 6.9375rem;
+    width: 6rem;
     height: 0.8rem;
     background-color: #5babfb;
     border: none;
@@ -126,11 +126,11 @@ export default {
       font-size: 0.4rem;
     }
   }
-  /deep/.van-nav-bar__title {
+  :deep.van-nav-bar__title {
     max-width: unset;
   }
 
-  /deep/.channel-tabs {
+  :deep.channel-tabs {
     .van-tabs_wrap {
       height: 1.025rem;
     }
